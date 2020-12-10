@@ -6,11 +6,9 @@ import { fetchHeadlines } from '../../lib/news'
 import ArticleList from '../../components/ArticleList'
 import TopAppBar from '../../components/TopAppBar'
 
-export default function HeadlinesPage(props: { articles }) {
-  //   const { context } = props
+export default function HeadlinesPage(props: { articles: NewsAPI.Article[] }) {
   const { articles } = props
   const router = useRouter()
-  console.log('articles:', articles)
 
   const { source } = router.query
 
