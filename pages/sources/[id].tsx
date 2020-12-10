@@ -10,6 +10,7 @@ export default function HeadlinesPage(props: { articles }) {
   //   const { context } = props
   const { articles } = props
   const router = useRouter()
+  console.log('articles:', articles)
 
   const { source } = router.query
 

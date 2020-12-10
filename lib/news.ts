@@ -21,15 +21,12 @@ export async function fetchNews(country?: NewsAPI.Country) {
 }
 
 // Only handling source and country for now
-export async function fetchHeadlines(params: {
-  source: string
-  country?: NewsAPI.Country
-}) {
-  const { source, country } = params
+export async function fetchHeadlines(params: { source: string }) {
+  const { source } = params
 
-  const ENDPOINT_HEADLINES_URL = `${API_URL}/${API_VERSION}/top-headlines?apikey=${API_KEY}&country=${
-    country ?? 'us'
-  }&source=${source ?? ''}`
+  const ENDPOINT_HEADLINES_URL = `${API_URL}/${API_VERSION}/top-headlines?apikey=${API_KEY}}&source=${
+    source ?? ''
+  }`
 
   const res = await fetch(ENDPOINT_HEADLINES_URL)
   const headlines = await res.json()
