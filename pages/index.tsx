@@ -4,8 +4,10 @@ import SourceList from '../components/SourceList'
 import TopAppBar from '../components/TopAppBar'
 import { fetchNews } from '../lib/news'
 
-export default function Home(props: { news: NewsAPI.Source[] }) {
-  const { news } = props
+export default function Home(props: { news: NewsAPI.Source[]; data }) {
+  const { news, data } = props
+  console.log('news:', news)
+  console.log('data:', data)
 
   return (
     <div>
@@ -24,6 +26,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const news = data?.sources ?? []
 
   return {
-    props: { news },
+    props: { news, data },
   }
 }

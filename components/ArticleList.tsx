@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import { Avatar, ListItemAvatar } from '@material-ui/core'
+import SkeletonList from './SkeletonList'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,34 +27,38 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default function ArticleList(props: { articles: NewsAPI.Article[] }) {
+export default function ArticleList(props: { articles?: NewsAPI.Article[] }) {
   const { articles } = props
   const classes = useStyles()
 
   return (
-    <List component='nav' className={classes.root} aria-label='mailbox folders'>
-      {articles.map((item) => {
-        return (
-          <>
-            <Link href={`${item.url}`}>
-              <ListItem button alignItems='flex-start'>
-                <ListItemAvatar className={classes.avatar}>
-                  <Avatar
-                    variant={'square'}
-                    src={`${item.urlToImage}`}
-                    className={classes.image}
+    <List component='nav' className={classes.root}>
+      {articles ? (
+        articles.map((item) => {
+          return (
+            <>
+              <Link href={`${item.url}`}>
+                <ListItem button alignItems='flex-start'>
+                  <ListItemAvatar className={classes.avatar}>
+                    <Avatar
+                      variant={'square'}
+                      src={`${item.urlToImage}`}
+                      className={classes.image}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${item.title}`}
+                    secondary={`${item.description}`}
                   />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={`${item.title}`}
-                  secondary={`${item.description}`}
-                />
-              </ListItem>
-            </Link>
-            <Divider />
-          </>
-        )
-      })}
+                </ListItem>
+              </Link>
+              <Divider />
+            </>
+          )
+        })
+      ) : (
+        <SkeletonList />
+      )}
     </List>
   )
 }

@@ -16,11 +16,9 @@ const useStyles = makeStyles((theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    titleSource: {
-      flexGrow: 1,
-      textAlign: 'center',
-    },
+
     title: {
+      flexGrow: 1,
       textAlign: 'center',
     },
   })
@@ -53,10 +51,7 @@ export default function TopAppBar(props: {
               </Typography>
             </IconButton>
           )}
-          <Typography
-            variant='h6'
-            className={isSource ? classes.titleSource : classes.title}
-          >
+          <Typography variant='h6' className={classes.title}>
             {title}
           </Typography>
         </Toolbar>
