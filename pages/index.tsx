@@ -7,8 +7,6 @@ export default function Home(props: { news: NewsAPI.Source[] }) {
   const { news } = props
   console.log('news:', news)
 
-  const test = news[0].category
-
   return (
     <div>
       <Head>

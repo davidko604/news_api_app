@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default function SourceList(props: { news: NewsAPI.Source[] }) {
-  const { news } = props
+export default function ArticleList(props: { articles: NewsAPI.Article[] }) {
+  const { articles } = props
   const classes = useStyles()
 
   return (
     <List component='nav' className={classes.root} aria-label='mailbox folders'>
-      {news.map((item) => {
+      {articles.map((item) => {
         return (
           <>
-            <Link href={`/sources/${item.id}?source=${item.name}`}>
+            <Link href={`${item.url}`}>
               <ListItem button>
-                <ListItemText primary={`${item.name}`} />
+                <ListItemText primary={`${item.title}`} />
                 <KeyboardArrowRightIcon className={classes.icon} />
               </ListItem>
             </Link>

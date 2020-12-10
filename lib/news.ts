@@ -1,9 +1,13 @@
 const API_URL = 'https://newsapi.org'
 const API_VERSION = 'v2'
 const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_TOKEN
-const ENDPOINT_SOURCES_URL = `${API_URL}/${API_VERSION}/sources?apikey=${API_KEY}`
 
-export async function fetchNews() {
+// Only handling country for now.  Ignoring language and category.
+export async function fetchNews(country?: NewsAPI.Country) {
+  const ENDPOINT_SOURCES_URL = `${API_URL}/${API_VERSION}/sources?apikey=${API_KEY}&country=${
+    country ?? 'us'
+  }`
+
   const res = await fetch(ENDPOINT_SOURCES_URL)
   const news = await res.json()
 
@@ -14,4 +18,29 @@ export async function fetchNews() {
   }
 
   return news
+}
+
+// Only handling source and country for now
+export async function fetchHeadlines(params: {
+  source: string
+  country?: NewsAPI.Country
+}) {
+  const { source, country } = params
+
+  const ENDPOINT_HEADLINES_URL = `${API_URL}/${API_VERSION}/top-headlines?apikey=${API_KEY}&country=${
+    country ?? 'us'
+  }&source=${source ?? ''}`
+  //   const { data, error } = useSWR('ENDPOINT_HEADLINES_URL', fetch)
+
+  //   console.log('data:', data)
+  const res = await fetch(ENDPOINT_HEADLINES_URL)
+  const headlines = await res.json()
+
+  if (!headlines) {
+    return {
+      status: 'not found',
+    }
+  }
+
+  return headlines
 }
