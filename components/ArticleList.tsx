@@ -5,17 +5,23 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+import { Avatar, ListItemAvatar } from '@material-ui/core'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
     icon: {
       color: '#c5c3c5',
+    },
+    image: {
+      width: '60px',
+      height: '60px',
+    },
+    avatar: {
+      marginRight: '1REM',
     },
   })
 )
@@ -30,9 +36,18 @@ export default function ArticleList(props: { articles: NewsAPI.Article[] }) {
         return (
           <>
             <Link href={`${item.url}`}>
-              <ListItem button>
-                <ListItemText primary={`${item.title}`} />
-                <KeyboardArrowRightIcon className={classes.icon} />
+              <ListItem button alignItems='flex-start'>
+                <ListItemAvatar className={classes.avatar}>
+                  <Avatar
+                    variant={'square'}
+                    src={`${item.urlToImage}`}
+                    className={classes.image}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={`${item.title}`}
+                  secondary={`${item.description}`}
+                />
               </ListItem>
             </Link>
             <Divider />

@@ -30,9 +30,7 @@ export async function fetchHeadlines(params: {
   const ENDPOINT_HEADLINES_URL = `${API_URL}/${API_VERSION}/top-headlines?apikey=${API_KEY}&country=${
     country ?? 'us'
   }&source=${source ?? ''}`
-  //   const { data, error } = useSWR('ENDPOINT_HEADLINES_URL', fetch)
 
-  //   console.log('data:', data)
   const res = await fetch(ENDPOINT_HEADLINES_URL)
   const headlines = await res.json()
 

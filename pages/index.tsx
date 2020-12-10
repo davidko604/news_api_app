@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import SourceList from '../components/SourceList'
+import TopAppBar from '../components/TopAppBar'
 import { fetchNews } from '../lib/news'
 
 export default function Home(props: { news: NewsAPI.Source[] }) {
   const { news } = props
-  console.log('news:', news)
 
   return (
     <div>
@@ -13,6 +13,7 @@ export default function Home(props: { news: NewsAPI.Source[] }) {
         <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <TopAppBar title='Source List' />
       <SourceList news={news} />
     </div>
   )
