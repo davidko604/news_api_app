@@ -1,39 +1,30 @@
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import SourceList from '../components/SourceList'
 import { fetchNews } from '../lib/news'
 
-export default function Home(props: { news }) {
+export default function Home(props: { news: NewsAPI.Source[] }) {
   const { news } = props
   console.log('news:', news)
 
-  // useEffect(() => {
-  //   console.log('news:', news)
-  // }, [news])
+  const test = news[0].category
 
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      <footer>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Powered by <img src='/vercel.svg' alt='Vercel Logo' />
-        </a>
-      </footer>
+      <SourceList news={news} />
     </div>
   )
 }
 
-export async function getStaticProps() {
-  const news = await fetchNews()
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data: NewsAPI.Request = await fetchNews()
+  const news = data?.sources ?? []
 
   return {
-    props: { news }, // will be passed to the page component as props
+    props: { news },
   }
 }
