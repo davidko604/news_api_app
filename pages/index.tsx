@@ -13,7 +13,7 @@ export default function Home(props: { news: NewsAPI.Source[] }) {
         <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <TopAppBar title='Source List' />
+      <TopAppBar title='Source List' isSource={true} />
       <SourceList news={news} />
     </div>
   )
