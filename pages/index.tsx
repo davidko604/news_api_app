@@ -5,9 +5,7 @@ import TopAppBar from '../components/TopAppBar'
 import { fetchNews } from '../lib/news'
 
 export default function Home(props: { news: NewsAPI.Source[]; data }) {
-  const { news, data } = props
-  console.log('news:', news)
-  console.log('data:', data)
+  const { news } = props
 
   return (
     <div>
@@ -15,8 +13,11 @@ export default function Home(props: { news: NewsAPI.Source[]; data }) {
         <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <TopAppBar title='Source List' isSource={true} />
-      <SourceList news={news} />
+      <body>
+        <div style={{ height: '50px' }} />
+        <TopAppBar title='Source List' isSource={true} />
+        <SourceList news={news} />
+      </body>
     </div>
   )
 }
@@ -26,6 +27,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const news = data?.sources ?? []
 
   return {
-    props: { news, data },
+    props: { news },
   }
 }

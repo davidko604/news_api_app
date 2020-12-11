@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SourceList(props: { news?: NewsAPI.Source[] }) {
   const { news } = props
-  console.log('news:', news)
   const classes = useStyles()
 
   return (

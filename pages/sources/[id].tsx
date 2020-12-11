@@ -9,17 +9,18 @@ import TopAppBar from '../../components/TopAppBar'
 export default function HeadlinesPage(props: { articles: NewsAPI.Article[] }) {
   const { articles } = props
   const router = useRouter()
-
   const { source } = router.query
-
   return (
     <div>
       <Head>
         <title>News App - {source}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <TopAppBar title={`${source}`} />
-      <ArticleList articles={articles} />
+      <body>
+        <div style={{ height: '50px' }} />
+        <TopAppBar title={`${source}`} />
+        <ArticleList articles={articles} />
+      </body>
     </div>
   )
 }

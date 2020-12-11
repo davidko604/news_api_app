@@ -34,7 +34,7 @@ export default function TopAppBar(props: {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' className={classes.appbar}>
+      <AppBar position='fixed' className={classes.appbar}>
         <Toolbar>
           {isSource ? null : (
             <IconButton
