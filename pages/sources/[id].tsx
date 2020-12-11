@@ -12,7 +12,7 @@ export default function HeadlinesPage(props: { articles: NewsAPI.Article[] }) {
   const router = useRouter()
   const { source } = router.query
   return (
-    <Container>
+    <Container maxWidth='sm'>
       <Head>
         <title>News App - {source}</title>
         <link rel='icon' href='/favicon.ico' />

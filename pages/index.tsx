@@ -9,7 +9,7 @@ export default function Home(props: { news: NewsAPI.Source[]; data }) {
   const { news } = props
 
   return (
-    <Container>
+    <Container maxWidth='sm'>
       <Head>
         <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
