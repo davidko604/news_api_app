@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import SourceList from '../components/SourceList'
@@ -8,7 +9,7 @@ export default function Home(props: { news: NewsAPI.Source[]; data }) {
   const { news } = props
 
   return (
-    <div>
+    <Container>
       <Head>
         <title>News App</title>
         <link rel='icon' href='/favicon.ico' />
@@ -18,7 +19,7 @@ export default function Home(props: { news: NewsAPI.Source[]; data }) {
         <TopAppBar title='Source List' isSource={true} />
         <SourceList news={news} />
       </body>
-    </div>
+    </Container>
   )
 }
 

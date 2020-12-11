@@ -5,13 +5,14 @@ import { GetServerSideProps } from 'next'
 import { fetchHeadlines } from '../../lib/news'
 import ArticleList from '../../components/ArticleList'
 import TopAppBar from '../../components/TopAppBar'
+import { Container } from '@material-ui/core'
 
 export default function HeadlinesPage(props: { articles: NewsAPI.Article[] }) {
   const { articles } = props
   const router = useRouter()
   const { source } = router.query
   return (
-    <div>
+    <Container>
       <Head>
         <title>News App - {source}</title>
         <link rel='icon' href='/favicon.ico' />
@@ -21,7 +22,7 @@ export default function HeadlinesPage(props: { articles: NewsAPI.Article[] }) {
         <TopAppBar title={`${source}`} />
         <ArticleList articles={articles} />
       </body>
-    </div>
+    </Container>
   )
 }
 
